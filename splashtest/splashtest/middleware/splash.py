@@ -15,7 +15,7 @@ class SplashMiddleware(object):
     url_block = ()
 
     _settings = [
-        'url',
+        'endpoint',
         'wait',
         'images',
         'js',
@@ -85,7 +85,7 @@ class SplashMiddleware(object):
             return response
 
     def _wrap_url(self, request):
-        wrapped = w3lib.url.add_or_replace_parameter(self.url, 'url', request.url)
+        wrapped = w3lib.url.add_or_replace_parameter(self.endpoint, 'url', request.url)
 
         # pass options
         wrapped = w3lib.url.add_or_replace_parameter(wrapped, 'wait', self.wait)
