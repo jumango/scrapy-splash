@@ -20,7 +20,7 @@ Available settings
 ------------------
 
 * `SPLASH_ENABLED` = `True` or `False`
-* `SPLASH_URL`: the endpoint for your splash server. Default is 'http://localhost:8050/render.html'
+* `SPLASH_ENDPOINT`: the endpoint for your splash server. Default is 'http://localhost:8050/render.html'
 * `SPLASH_WAIT`: wait time in seconds (see http://splash.readthedocs.org/en/latest/api.html#render-html)
 * `SPLASH_IMAGES`: `True` or `False` (default is `True`)
 * `SPLASH_URL_PASS`: tuple of regular expressions matching URLs to send to Splash (default is `None`, i.e. no request goes through splash)
