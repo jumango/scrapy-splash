@@ -9,7 +9,7 @@ _matches = lambda url, regexs: any((r.search(url) for r in regexs))
 
 class SplashMiddleware(object):
 
-    url = 'http://localhost:8050/render.html'
+    endpoint = 'http://localhost:8050/render.html'
     wait = 2
     url_pass = ()
     url_block = ()
