@@ -75,7 +75,7 @@ class SplashMiddleware(object):
     def process_request(self, request, spider):
         if self._needs_wrapping(request):
             self.crwlr_stats.inc_value('splash/wrapped', spider=spider)
-            return self._wrap_url(request)
+            self._wrap_url(request)
 
     def process_response(self, request, response, spider):
         if request.meta.get('splashed_url', False):
@@ -97,7 +97,9 @@ class SplashMiddleware(object):
         if self.filters:
             wrapped = w3lib.url.add_or_replace_parameter(wrapped, 'filters', self.filters)
 
-        return request.replace(url=wrapped, meta={"splashed_url": request.url})
+        request.meta["splashed_url"] = request.url
+        # one cannot change the URL with request.url = ...
+        request._set_url(wrapped)
 
     def _unwrap_url(self, request, response):
         unwrapped = w3lib.url.url_query_parameter(request.url, 'url')
