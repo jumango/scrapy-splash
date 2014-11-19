@@ -32,7 +32,7 @@ How to use it
 To tell scrapy to send some requests to Splash using this middleware,
 you have the following options:
 
-* set a `use_splash` key as `True` in your `Request` `meta`
+* set a `use_splash` key to `True` in your `Request` `meta`: e.g. `yield Request(url, meta={"use_splash": True})`
 * use `SPLASH_URL_PASS` and `SPLASH_URL_BLOCK`, for example
 `SPLASH_URL_PASS = (r'.',)` would match all URLs, and send everything
 through Splash
@@ -43,7 +43,7 @@ Example spider
 
 You can test the example spider like this:
 
-1. start your splash server
+* start your splash server
 
 ```shell
 cd src/splash
@@ -53,7 +53,7 @@ python -msplash.server
 Let's assume splash is listening at http://localhost:8050/render.html,
 otherwise change `settings.py` `SPLASH_ENDPOINT`.
 
-2. The spider expects a `urls` parameter that is a URL of a file
+* The spider expects a `urls` parameter that is a URL of a file
 containing URLs to fetch.
 
 ```shell
