@@ -13,7 +13,7 @@ class ExampleSpider(scrapy.Spider):
     def parse_urlfile(self, response):
         limit = int(getattr(self, 'limit', '0'))
         for cnt, line in enumerate(StringIO.StringIO(response.body).readlines(), start=1):
-            yield scrapy.Request(line.strip())
+            yield scrapy.Request(line.strip(), meta={"use_splash": True})
             if limit and cnt >= limit:
                 break
 

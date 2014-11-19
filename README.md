@@ -25,3 +25,39 @@ Available settings
 * `SPLASH_IMAGES`: `True` or `False` (default is `True`)
 * `SPLASH_URL_PASS`: tuple of regular expressions matching URLs to send to Splash (default is `None`, i.e. no request goes through splash)
 * `SPLASH_URL_BLOCK`:  tuple of regular expressions matching URLs NOT to send to Splash (default is `None`, i.e. do not filter out anything)
+
+How to use it
+-------------
+
+To tell scrapy to send some requests to Splash using this middleware,
+you have the following options:
+
+* set a `use_splash` key as `True` in your `Request` `meta`
+* use `SPLASH_URL_PASS` and `SPLASH_URL_BLOCK`, for example
+`SPLASH_URL_PASS = (r'.',)` would match all URLs, and send everything
+through Splash
+
+
+Example spider
+--------------
+
+You can test the example spider like this:
+
+1. start your splash server
+
+```shell
+cd src/splash
+python -msplash.server
+```
+
+Let's assume splash is listening at http://localhost:8050/render.html,
+otherwise change `settings.py` `SPLASH_ENDPOINT`.
+
+2. The spider expects a `urls` parameter that is a URL of a file
+containing URLs to fetch.
+
+```shell
+~/src/scrapy-splash$ cd splashtest/
+~/src/scrapy-splash/splashtest$ scrapy crawl example -a urls=https://gist.githubusercontent.com/redapple/93c97ce85dbceddcb063/raw/6250c37003d77b0ac006d95e7d15e3a71e701bea/urls.txt
+
+```
