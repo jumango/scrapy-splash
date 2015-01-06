@@ -10,12 +10,14 @@ _matches = lambda url, regexs: any((r.search(url) for r in regexs))
 class SplashMiddleware(object):
 
     endpoint = 'http://localhost:8050/render.html'
+    timeout = 30
     wait = 2
     url_pass = ()
     url_block = ()
 
     _settings = [
         'endpoint',
+        'timeout',
         'wait',
         'images',
         'js',
@@ -88,6 +90,7 @@ class SplashMiddleware(object):
         wrapped = w3lib.url.add_or_replace_parameter(self.endpoint, 'url', request.url)
 
         # pass options
+        wrapped = w3lib.url.add_or_replace_parameter(wrapped, 'timeout', self.timeout)
         wrapped = w3lib.url.add_or_replace_parameter(wrapped, 'wait', self.wait)
         if self.viewport:
             wrapped = w3lib.url.add_or_replace_parameter(wrapped, 'viewport', self.viewport)
