@@ -19,6 +19,7 @@ DOWNLOADER_MIDDLEWARES = {
 
 SPLASH_ENABLED = True
 SPLASH_ENDPOINT = 'http://localhost:8050/render.html'
+SPLASH_TIMEOUT = 30
 SPLASH_WAIT = 2
 SPLASH_IMAGES = False
 #SPLASH_URL_PASS = (r'example\.com',)
